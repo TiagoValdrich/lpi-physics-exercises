@@ -4,4 +4,4 @@ College exercises for Integrated Practices Laboratory class.
 
 ## Recommendations
 
-- All the programs are compiled and executed using python 3.7 version, to avoid errors, we recommend use this version.
+- All the programs are compiled and executed using python 3.7 version, to avoid errors, we recommend use some python 3 version.
