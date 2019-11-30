@@ -1,3 +1,7 @@
+'''
+    Exercício 1 da lista.
+'''
+
 import re
 
 def main():
