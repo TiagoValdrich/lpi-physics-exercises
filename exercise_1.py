@@ -9,7 +9,7 @@ def main():
 
     try:
         while True:
-            print('Insert the initial speed: ')
+            print('Insert the car initial speed in m/s: ')
             initial_speed = input()
 
             if has_only_numbers(initial_speed):
@@ -18,7 +18,7 @@ def main():
             if (type(initial_speed) is float) and (initial_speed > 0):
                 break
     except:
-        print('Invalid value inserted. Please, insert only numbers.')
+        print('Invalid initial speed. Please, insert only numbers.')
         exit()
 
     time = calc_slowdown_time(0, initial_speed, SLOWDOWN)
