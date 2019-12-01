@@ -17,8 +17,8 @@ def main():
     time_to_slowdown = calc_time_to_get_speed(0, speed_before_slowdown, slowdown)
     distance_until_stop = calc_distance(distance_to_get_speed, speed_before_slowdown, time_to_slowdown, slowdown)
 
-    print('Time between departure and stop: ' + str(time_to_get_speed + time_to_slowdown))
-    print('Distance traveled: ' + str(distance_to_get_speed + distance_until_stop))
+    print('Time between departure and stop: %.2f seconds' % (time_to_get_speed + time_to_slowdown))
+    print('Distance traveled: %.2f meters' % (distance_to_get_speed + distance_until_stop))
 
 def has_only_numbers(input_string):
     return bool(re.search(r'-?\d+', input_string))
