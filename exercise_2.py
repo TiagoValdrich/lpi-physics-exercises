@@ -5,9 +5,9 @@
 import re
 
 def main():
-    acceleration = ask_for_float_number_from_input('Insert the car initial acceleration (m/s²): ')
-    speed_before_slowdown = ask_for_float_number_from_input('Insert the final speed before the slowdown (m/s): ')
-    slowdown = ask_for_float_number_from_input('Insert the car slowdown (m/s²): ')
+    acceleration = ask_for_float_number_on_input('Insert the car initial acceleration (m/s²): ')
+    speed_before_slowdown = ask_for_float_number_on_input('Insert the final speed before the slowdown (m/s): ')
+    slowdown = ask_for_float_number_on_input('Insert the car slowdown (m/s²): ')
 
     if (slowdown > 0):
         slowdown = slowdown * -1
@@ -24,7 +24,7 @@ def has_only_numbers(input_string):
     return bool(re.search(r'-?\d+', input_string))
 
 
-def ask_for_float_number_from_input(message):
+def ask_for_float_number_on_input(message):
     try:
         value = 0.0
         
