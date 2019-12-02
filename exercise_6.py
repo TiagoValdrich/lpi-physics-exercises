@@ -1,58 +1,50 @@
 def main():
+    print('Insert a number of wagons')
+    numb = int(input())
+
+    wags = []
+    total_wd = 0
+
+    for i in range( 0 , numb ):
+        print('Insert the weight of the wagon ' + str(i+1) + ':' )
+        wags.insert(i , float(input()))
+        total_wd += wags[i]
+
+
     print('Insert a force for locomotive')
     force = float(input())
 
-    print('Insert a number of wagons')
-    wag = int(input())
+    acel =  calc_acel( force , total_wd )
 
-    print('Insert their weights')
-    wd = 0
-    weights = []
-    for ii in range(0, wag):
-        w =  float(input())
-        weights.insert(ii , w)
-        wd += weights[ii]
+    # Aceleration
+    print('Aceleration value : ' + str(acel))
 
+    f = force
+    for i in range( 0 , numb ):
+        wag = wags[i]
+        t = calc_tension( wag , acel , f )
+        if( t < 0 ):
+            t = t * -1
+        if( t == 0 ):
+            t = calc_last_ten( wag , acel )
 
-    acel = calc_acel( force , wd )
-    print('Aceleration is : ' + str( acel ) )
+        f = t
 
-    # First wagon
-    wag1_ten = calc_wag1( weights[0] , acel , force )
-
-
-    # Last wagon
-    length = len(weights)
-    last_elem_wd = weights[ length - 1 ]
-
-    las_wag_ten = calc_las_wag( last_elem_wd , acel )
-
-
-    # Wag
-    random_wag_ten = calc_random_wag_ten()
-
-
-    # PRINTs
-    print('wag1 tension ' + str(-wag1_ten))
-
-    print('last wag tension ' + str(las_wag_ten))
-
+        # Wag Tension
+        print('Wagon tension ' + str(i+1) + ' : ' + str(f) )
 
 
 def calc_acel( F , m ):
     return  F / m
 
 
-def calc_wag1( m , ac , F ):
-    return ( m * ac ) - F
+def calc_tension( w , a , f ):
+    return ( w * a ) - f
 
 
-def calc_las_wag( m , ac ):
-    return m * ac
+def calc_last_ten( w , a ):
+    return w * a
 
-
-def calc_random_wag_ten():
-    return
 
 if __name__ == '__main__':
     main()
