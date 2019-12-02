@@ -1,15 +1,12 @@
 import math
-
+import re
 
 def main():
-    print('Insert a height')
-    height = float(input())
+    height = ask_for_float_number_on_input('Insert a height')
 
-    print('Insert an angle')
-    angle = float(input())
+    angle = ask_for_float_number_on_input('Insert an angle')
 
-    print('Insert the for projectile impact')
-    time = float(input())
+    time = ask_for_float_number_on_input('Insert the for projectile impact')
 
     calc_plane_angle = calc_sen( 90 - angle )
     plane_velocity = calc_plane_velocity( 0, height, 9.8, time, calc_plane_angle )
@@ -22,6 +19,30 @@ def main():
     print('The plane velocity is :' + str( -plane_velocity ) )
 
     print('The plane horizontal distance is :' + str( -horiz_dist ) )
+
+
+def ask_for_float_number_on_input(message):
+    try:
+        value = 0.0
+
+        while True:
+            print(message)
+            value = input()
+
+            if has_only_numbers(value):
+                value = float(value)
+
+            if (type(value) is float) and (value > 0):
+                break
+
+        return value
+    except:
+        print('Invalid value inserted. Please, insert only numbers.')
+        exit()
+
+
+def has_only_numbers(input_string):
+    return bool(re.search(r'-?\d+', input_string))
 
 
 def calc_plane_velocity(iniciatl_height, height, g, time, angle):
