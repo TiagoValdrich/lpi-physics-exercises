@@ -2,20 +2,17 @@ import math
 import re
 
 def main():
+    GRAVITY = 9.8
 
-    weight = ask_for_float_number_on_input('Insert the maximum weight ')
+    weight = ask_for_float_number_on_input('Insert the maximum weight (kg):')
+    speed = ask_for_float_number_on_input('Insert the maximum velocity (km/h): ')
+    speed = speed / 3.6
+    angle = ask_for_float_number_on_input('Insert tilt angle in degrees: ')
 
-    vel = ask_for_float_number_on_input('Insert the maximum velocity ')
+    ramp_height = calc_ramp_height(speed, GRAVITY)
+    ramp_length = calc_ramp_length(ramp_height, angle)
 
-    inc = ask_for_float_number_on_input('Insert tilt angle in degrees')
-
-    angle = calc_angle( 3.14159265359 , inc )
-    sin = calc_sin(angle)
-
-    calc_dist = calc_distance(weight , 9.807 , vel , sin)
-
-
-    print('Track size : ' + str(calc_dist) + ' m')
+    print('Track size : %.2fm' % ramp_length)
 
 
 def ask_for_float_number_on_input(message):
@@ -42,16 +39,16 @@ def has_only_numbers(input_string):
     return bool(re.search(r'-?\d+', input_string))
 
 
-def calc_angle( p ,ang ):
-    return (p * ang) / 180
-
-
 def calc_sin(a):
     return math.sin(math.radians(a))
 
 
-def calc_distance(w , g , v , a):
-    return ((w/g) * -(v**2))/(w * a) * -1
+def calc_ramp_length(height, angle):
+    return (height / calc_sin(angle))
+
+
+def calc_ramp_height(speed, gravity):
+    return ((pow(speed, 2)) / (2 * gravity))
 
 
 if __name__ == '__main__':
