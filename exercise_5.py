@@ -1,38 +1,57 @@
 import math
-
+import re
 
 def main():
-    print('Insert the maximum weight ')
-    weight = float(input())
 
-    print('Insert the maximum velocity ')
-    vel = float(input())
+    weight = ask_for_float_number_on_input('Insert the maximum weight ')
 
-    print('Insert the inclination ')
-    inc = float(input())
+    vel = ask_for_float_number_on_input('Insert the maximum velocity ')
 
-    kin_energy = calc_kin_ener(weight, vel)
+    inc = ask_for_float_number_on_input('Insert tilt angle in degrees')
 
-    h = calc_sen(inc)
-    pot_energy = calc_pot_ener(weight, 9.8, h)
+    angle = calc_angle( 3.14159265359 , inc )
+    sin = calc_sin(angle)
 
-    ramp_weight = calc_ramp_weight()
+    calc_dist = calc_distance(weight , 9.807 , vel , sin)
 
 
-def calc_ramp_weight():
-    return
+    print('Track size : ' + str(calc_dist) + ' m')
 
 
-def calc_sen(angle):
-    return math.sin(math.radians(angle))
+def ask_for_float_number_on_input(message):
+    try:
+        value = 0.0
+
+        while True:
+            print(message)
+            value = input()
+
+            if has_only_numbers(value):
+                value = float(value)
+
+            if (type(value) is float) and (value > 0):
+                break
+
+        return value
+    except:
+        print('Invalid value inserted. Please, insert only numbers.')
+        exit()
 
 
-def calc_kin_ener(wd, vel):
-    return (wd * (vel ** 2)) / 2
+def has_only_numbers(input_string):
+    return bool(re.search(r'-?\d+', input_string))
 
 
-def calc_pot_ener(wd, g, h):
-    return (wd * g * h)
+def calc_angle( p ,ang ):
+    return (p * ang) / 180
+
+
+def calc_sin(a):
+    return math.sin(math.radians(a))
+
+
+def calc_distance(w , g , v , a):
+    return ((w/g) * -(v**2))/(w * a) * -1
 
 
 if __name__ == '__main__':

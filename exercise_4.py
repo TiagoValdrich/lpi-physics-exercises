@@ -50,7 +50,7 @@ def has_only_numbers(input_string):
 
 
 def calc_plane_velocity(iniciatl_height, height, g, time, angle):
-    return ((iniciatl_height - height) + (1 / 2 * g * time ** 2 )) / (angle * time)
+    return ((iniciatl_height - height) + (1 / 2 * g * time ** 2)) / (angle * time)
 
 
 def calc_sen(angle):
