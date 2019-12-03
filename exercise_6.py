@@ -21,7 +21,6 @@ def main():
     last_tension = 0
 
     for i in range(numb):
-        print('nhaa' + str(i))
         tension = 0
         # Check if is the first wagon
         if i == 0:
